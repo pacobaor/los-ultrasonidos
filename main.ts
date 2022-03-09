@@ -1,16 +1,25 @@
+function girar90derecha () {
+    maqueen.motorStop(maqueen.Motors.All)
+    maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, 100)
+    maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 100)
+    basic.pause(260)
+    maqueen.motorStop(maqueen.Motors.All)
+}
+function girar90izquierda () {
+    maqueen.motorStop(maqueen.Motors.All)
+    maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 100)
+    maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CCW, 100)
+    basic.pause(260)
+    maqueen.motorStop(maqueen.Motors.All)
+}
 basic.forever(function () {
     if (maqueen.Ultrasonic(PingUnit.Centimeters) == 15) {
         maqueen.motorStop(maqueen.Motors.All)
-        basic.pause(500)
-        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 150)
-        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CCW, 150)
-        basic.pause(150)
-        maqueen.motorStop(maqueen.Motors.All)
-        basic.pause(500)
-        maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CW, 150)
-        basic.pause(500)
-        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, 150)
-        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 150)
+        girar90izquierda()
+        maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CW, 100)
+        basic.pause(260)
+        girar90derecha()
+    } else {
         maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CW, 255)
     }
 })

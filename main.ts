@@ -18,12 +18,14 @@ let ultimogiro = 0
 basic.forever(function () {
     if (maqueen.Ultrasonic(PingUnit.Centimeters) == 4) {
         maqueen.motorStop(maqueen.Motors.All)
-        if (ultimogiro == 0) {
-            girar90izquierda()
-            ultimogiro = 1
-        } else {
+        girar90izquierda()
+        if (maqueen.Ultrasonic(PingUnit.Centimeters) == 4) {
+            maqueen.motorStop(maqueen.Motors.All)
             girar90derecha()
-            ultimogiro = 0
+            if (maqueen.Ultrasonic(PingUnit.Centimeters) == 4) {
+                maqueen.motorStop(maqueen.Motors.All)
+                girar90derecha()
+            }
         }
     } else {
         maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CW, 20)
